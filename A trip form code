@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Travel Form</title>
+
+
+</head>
+<body>
+<img class="gallery_15935206071" src="gallery_15935206071.jpg" alt="JIIT NOIDA 62">
+<div class = "container" >
+  <h1> Welcome to Jaypee Institute of Information Technology UK Trip form</h1>
+  <p> <b>Enter your details to confirm your participation in the trip</b></p>
+  <p class="submitMsg"><b>Thanks for submitting the form for the UK trip. We will be obliged to see you at the trip.</b></p>
+  <style>*{
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+    .container{
+      max-width:80%;
+      padding: 56px;
+      margin: auto;
+    }
+    .container h1{
+      text-align: center;
+      font-family:'Sriracha', cursive;
+      font-size: 40px;
+    }
+    p{
+      text-align: center;
+      font-family:'Sriracha', cursive;
+      font-size: 18px;
+    }
+    input , textarea{
+      display: block;
+      outline: none;
+      border: 2px solid black;
+      border-radius: 6px;
+      width: 80%;
+      margin:11px 0px;
+      padding: 7px;
+      font-size: 25px;
+    }
+    form{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .btn{
+      color: white;
+      background: purple;
+      padding: 15px 10px;
+      font-size: 20px;
+      border: 2px solid white;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+    .gallery_15935206071{
+      width: 100%;
+      position: absolute;
+      z-index: -1;
+      opacity: 0.8;
+    }
+    .submitMsg{
+      color: darkred;
+    }
+  .in{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  .out{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  .kite{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  .dollar{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  .text{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  .sun{
+      border:2px solid white;
+      background -color:transparent;
+      border-radius:10px;
+  }
+  </style>
+
+  <form action="index.php" method="post">
+    <input class="in" type="text" name="name" id="name" placeholder="enter your name">
+    <input class="out" type="text" name="age" id="age" placeholder="enter your age">
+    <input class="kite" type="text" name="gender" id="gender" placeholder="enter your gender">
+    <input class="dollar" type="text" name="email" id="email" placeholder="enter your email">
+    <input class="text" type="text" name="phone" id="phone" placeholder="enter your phone number">
+    <textarea class="sun" name="desc" id="desc" cols="30" rows="10" placeholder="Enter any other Information">
+        </textarea>
+    <button class="btn">Submit</button>
+
+
+  </form>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>
+<?php
+if(isset($_POST['name'])) {
+  $server = "localhost";
+  $username = "root";
+  $password = "";
+  $con = mysqli_connect($server, $username, $password);
+  if (!$con) {
+    die("connection to this database failed due to" . mysqli_connect_error());
+
+  }
+  //echo "Success connection to the DB";
+  $SNO = $_POST['Sno'];
+  $name = $_POST['name'];
+  $gender = $_POST['gender'];
+  $age = $_POST['age'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $desc = $_POST['desc'];
+
+
+  $sql = "INSERT INTO `trip` (`SNO`, `name`, `age`, `gender`, `email`, `phone`, `other`) VALUES ('$SNO', '$name', '$age', '$gender', '$email', '$phone', '$desc',current_timestamp());";
+  echo $sql;
+  if ($con->query($sql) == true) {
+    echo "Successfully inserted";
+
+  } else {
+    echo "ERROR: $sql <br> $con->error";
+  }
+  $con->close();
+
+}
+?>
